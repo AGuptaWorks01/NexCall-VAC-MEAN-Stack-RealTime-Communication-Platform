@@ -1,0 +1,78 @@
+<div class="h-[70vh]">
+    <div class="w-full lg:w-5/12 mt-3 p-5 shadow-lg mx-auto bg-white dark:bg-gray-800 rounded">
+        <h3 class="text-3xl text-center font-bold py-2 text-gray-800 dark:text-white">Register</h3>
+
+        <!-- Registration form -->
+        <form [formGroup]="userForm" class="flex flex-col">
+
+            <!-- username Field -->
+            <div class="flex flex-col mt-2 mb-1">
+                <input formControlName="username" type="username" placeholder="Username"
+                    class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <span *ngIf="userForm.hasError('required') && userForm.controls['username'].dirty"
+                    class="text-red-500 text-sm mt-1">
+                    *Username is required
+                </span>
+            </div>
+
+            <!-- Email Field -->
+            <div class="flex flex-col mt-2 mb-1">
+                <input formControlName="email" type="email" placeholder="Email"
+                    class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <span *ngIf="userForm.hasError('required', 'email') && userForm.controls['email'].dirty"
+                    class="text-red-500 text-sm mt-1">
+                    *Email is required
+                </span>
+                <span *ngIf="userForm.hasError('email', 'email') && userForm.controls['email'].dirty"
+                    class="text-red-500 text-sm mt-1">
+                    *Please enter a valid email
+                </span>
+            </div>
+
+            <!-- Password Field -->
+            <div class="flex flex-col mt-2 mb-1 relative">
+                <input formControlName="password" [type]="showPassword ? 'text' : 'password'" placeholder="Password"
+                    class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <span *ngIf="userForm.hasError('required', 'password') && userForm.controls['password'].dirty"
+                    class="text-red-500 text-sm mt-1">
+                    *Password is required
+                </span>
+                <!-- Eye icon -->
+                <button type="button" (click)="showPassword = !showPassword"
+                    class="absolute right-3 top-3 text-gray-600 hover:text-gray-800"
+                    aria-label="Toggle Password Visibility">
+                    <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                </button>
+            </div>
+
+            <!-- <button [disabled]="userForm.invalid" [class.opacity-50]="userForm.invalid" (click)="register()" -->
+            <button (click)="register()"
+                class="bg-blue-900 p-2 rounded mt-3 text-white hover:bg-blue-700 transition duration-300 disabled:cursor-not-allowed">
+                Register
+            </button>
+        </form>
+
+        <div class="divider p-5">
+            <hr>
+        </div>
+
+        <!-- <button type="button" class="google-btn" (click)="registerWithGoogle()">
+            <img src="assets/images/google-icon.ico" alt="Google Icon">
+            Sign up with Google
+        </button> -->
+
+        <!-- Wrapper div centers the button horizontally -->
+        <div class="flex justify-center mt-3">
+            <button type="button" (click)="registerWithGoogle()"
+                class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition">
+                <img src="assets/images/google-icon.ico" alt="Google Icon" class="w-6 h-6">
+            </button>
+        </div>
+
+
+        <div class="flex justify-center mt-3 text-gray-700 dark:text-gray-300">
+            <span>Already have an account?</span>
+            <a routerLink="/login" class="text-indigo-600 ml-2 hover:underline">Login Here</a>
+        </div>
+    </div>
+</div>

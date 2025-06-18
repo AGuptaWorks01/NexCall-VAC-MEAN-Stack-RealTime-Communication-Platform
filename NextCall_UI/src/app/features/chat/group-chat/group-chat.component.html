@@ -1,0 +1,131 @@
+<div>
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between p-2 rounded-lg bg-teal-200 shadow">
+        <div>
+            <h1 class="text-2xl font-bold cursor-grabbing">Group Chat</h1>
+            <h1 class="cursor-grabbing">DashBoard <strong>&amp;</strong> Groups</h1>
+        </div>
+        <div class="relative w-30 h-20 overflow-hidden">
+            <img src="assets/images/ChatBc.png" alt="Chat Background"
+                class="w-full h-[115%] object-cover translate-y-[10%]">
+        </div>
+    </nav>
+</div>
+
+<!-- Chat Container -->
+<div class="flex flex-col md:flex-row h-screen bg-gray-50 overflow-hidden relative z-10">
+
+    <!-- Backdrop (only visible on mobile when sidebar is open) -->
+    <div *ngIf="isSidebarOpen" class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-10" (click)="closeSidebar()">
+    </div>
+
+    <!-- Sidebar -->
+    <aside *ngIf="isSidebarOpen"
+        class="md:block w-80 md:w-1/3 lg:w-1/4 p-4 space-y-4 bg-white shadow-md transition-all duration-300 z-20 absolute md:relative top-0 left-0 h-full">
+
+        <!-- Group Creation Form -->
+        <div class="p-2 border-b border-gray-200">
+            <h2 class="text-lg font-semibold mb-2">Create New Group</h2>
+            <div class="flex items-center gap-2">
+                <mat-form-field class="w-full">
+                    <mat-label>Group Name</mat-label>
+                    <input matInput [(ngModel)]="newGroupName" (keyup.enter)="createGroup()"
+                        placeholder="My Awesome Group">
+                </mat-form-field>
+                <button mat-icon-button color="primary" (click)="createGroup()" [disabled]="!newGroupName.trim()">
+                    <mat-icon>add_circle</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Group List -->
+        <mat-card class="shadow rounded-lg h-[calc(100%-9rem)]">
+            <mat-card-title class="text-lg font-semibold">All Groups</mat-card-title>
+            <mat-card-content class="overflow-y-auto max-h-[calc(100%-3rem)]">
+                <ul class="list-none p-0 m-0">
+                    <li *ngFor="let group of groups" [ngClass]="{'bg-blue-100': selectedGroup?.id === group.id}"
+                        class="p-3 rounded-lg mb-2 flex flex-col">
+
+                        <div (click)="selectGroup(group)"
+                            [ngClass]="{'cursor-pointer': joinedGroupIds.has(group.id), 'cursor-not-allowed': !joinedGroupIds.has(group.id)}"
+                            class="flex justify-between items-center w-full">
+                            <span class="font-medium">{{ group.name }}</span>
+                            <span class="text-sm bg-gray-200 text-gray-700 rounded-full px-2 py-1">{{ group.memberCount
+                                }}</span>
+                        </div>
+
+                        <div class="flex items-center justify-end gap-2 mt-2">
+                            <button *ngIf="!joinedGroupIds.has(group.id)" (click)="joinGroup(group)" mat-stroked-button
+                                color="primary" class="!min-w-[auto] !px-2 !py-1 !text-xs">
+                                Join
+                            </button>
+                            <button *ngIf="joinedGroupIds.has(group.id)" (click)="leaveGroup(group)" mat-stroked-button
+                                color="warn" class="!min-w-[auto] !px-2 !py-1 !text-xs">
+                                Leave
+                            </button>
+                            <button *ngIf="isAdmin" (click)="deleteGroup(group); $event.stopPropagation();"
+                                mat-icon-button color="warn" class="!w-6 !h-6 !leading-6">
+                                <mat-icon class="!text-base">delete_forever</mat-icon>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <div *ngIf="groups.length === 0" class="p-4 text-center text-gray-500">
+                    No groups available. Create one!
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </aside>
+
+    <!-- Chat Section -->
+    <div class="flex-1 p-4 flex flex-col space-y-4">
+        <!-- Header -->
+        <mat-toolbar color="primary" class="rounded-lg shadow-md" *ngIf="selectedGroup">
+            <div class="flex items-center justify-between w-full">
+                <div class="flex items-center gap-2">
+                    <button mat-icon-button (click)="toggleSidebar()" class="md:hidden">
+                        <mat-icon class="text-black">menu</mat-icon>
+                    </button>
+                    <mat-icon class="text-black">group</mat-icon>
+                    <span class="text-black font-semibold">{{ selectedGroup.name }}</span>
+                </div>
+            </div>
+        </mat-toolbar>
+
+        <div *ngIf="!selectedGroup" class="flex-1 flex items-center justify-center">
+            <div class="text-center text-gray-500">
+                <mat-icon class="text-5xl mb-2">group</mat-icon>
+                <p>Select a group to start chatting</p>
+            </div>
+        </div>
+
+        <!-- Message Display Area -->
+        <div *ngIf="selectedGroup" class="flex-1 overflow-y-auto space-y-4 px-2">
+            <div *ngFor="let msg of messages" class="mb-2">
+                <div *ngIf="msg.type === 'system'" class="text-center text-sm text-gray-500 my-2 italic">
+                    {{ msg.message }}
+                </div>
+                <div *ngIf="msg.type === 'message'"
+                    [ngClass]="{'items-end': msg.from === currentUser, 'items-start': msg.from !== currentUser}"
+                    class="flex flex-col">
+                    <div [ngClass]="{'bg-blue-500 text-white self-end': msg.from === currentUser, 'bg-gray-200 text-gray-800 self-start': msg.from !== currentUser}"
+                        class="rounded-lg px-4 py-2 max-w-lg">
+                        <p class="text-xs font-bold" *ngIf="msg.from !== currentUser">{{ msg.from }}</p>
+                        <p>{{ msg.message }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message Input -->
+        <div *ngIf="selectedGroup" class="flex items-center gap-2 px-2">
+            <mat-form-field appearance="outline" class="w-full">
+                <input matInput placeholder="Send message to {{ selectedGroup.name }}" [(ngModel)]="messageContent"
+                    (keyup.enter)="sendMessage()" />
+            </mat-form-field>
+            <button mat-fab color="primary" (click)="sendMessage()" [disabled]="!messageContent.trim()">
+                <mat-icon>send</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

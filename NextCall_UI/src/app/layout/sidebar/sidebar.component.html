@@ -1,0 +1,22 @@
+<div class="flex h-full">
+    <!-- Sidebar -->
+    <aside [ngClass]="{ 'w-48': sidebarOpen, 'w-12': !sidebarOpen }"
+        class="transition-all duration-300 bg-gray-800 text-white flex flex-col">
+        <!-- Hamburger inside sidebar -->
+        <div class="flex items-center justify-end p-3">
+            <button #sideButton (click)="toggleSidebar()" class="text-white text-xl">
+                <i class="fas" [ngClass]="sidebarOpen ? 'fa-chevron-left' : 'fa-bars'"></i>
+            </button>
+        </div>
+
+        <!-- Sidebar content -->
+        <ul #sideDropdown *ngIf="sidebarOpen" class="space-y-4 p-4">
+
+            <li routerLink="/home/single-chat" class="hover:bg-gray-700 p-2 rounded cursor-pointer">Chat</li>
+            <li routerLink="/home/group-chat" class="hover:bg-gray-700 p-2 rounded cursor-pointer">Group chat</li>
+            <li class="hover:bg-gray-700 p-2 rounded cursor-pointer">Video</li>
+            <li class="hover:bg-gray-700 p-2 rounded cursor-pointer">Support</li>
+            <li class="hover:bg-gray-700 p-2 rounded cursor-pointer">Contact Us</li>
+        </ul>
+    </aside>
+</div>
