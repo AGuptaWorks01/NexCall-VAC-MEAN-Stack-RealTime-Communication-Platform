@@ -28,13 +28,13 @@ paths:
                 password:
                   type: string
                   example: tester@!23
-                name:
+                username:
                   type: string
                   example: Tester
               required:
                 - email
                 - password
-                - name
+                - username
       responses:
         201:
           description: User registered successfully

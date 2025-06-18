@@ -27,7 +27,7 @@ const app = express();
 // For production, use your actual frontend domain(s)
 // const allowedOrigins = ['https://yourfrontenddomain.com', 'https://anotherfrontend.com'];
 // For local development, adjust ports as needed
-const allowedOrigins = [ 'http://localhost:4300' ]; // Added current port for potential local frontend
+const allowedOrigins = [ 'http://localhost:4300', 'http://localhost:3000' ]; // Added current port for potential local frontend
 
 app.use( cors( {
     origin: function ( origin, callback ) {

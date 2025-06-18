@@ -9,7 +9,7 @@ passport.use( new GoogleStrategy( googleConfig,
     async ( accessToken, refreshToken, profile, done ) => {
         try
         {
-            console.log( 'Google Profile:', profile ); // Debug log
+            // console.log( 'Google Profile:', profile ); // Debug log
 
             // Get email from profile
             const email = profile.emails && profile.emails[ 0 ] ? profile.emails[ 0 ].value : null;
