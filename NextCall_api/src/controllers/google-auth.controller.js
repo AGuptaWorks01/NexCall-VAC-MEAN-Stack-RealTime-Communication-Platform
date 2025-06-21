@@ -1,7 +1,5 @@
 const passport = require( 'passport' );
 const { generateToken } = require( '../utils/jwt' );
-const User = require( '../models/user.model' );
-const { hasdPassword } = require( '../utils/hash' );
 
 const googleAuth = {
     // Initiate Google OAuth

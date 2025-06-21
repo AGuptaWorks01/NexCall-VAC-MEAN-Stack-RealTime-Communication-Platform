@@ -23,6 +23,17 @@ export class SidebarComponent {
 
   ngOnInit(): void {}
 
+  // Hover In
+  @HostListener( 'mouseenter' )
+  onMouseEnter() {
+    this.sidebarOpen=true;
+  }
+
+  // Hover Out
+  @HostListener( 'mouseleave' )
+  onMouseLeave() {
+    this.sidebarOpen=false;
+  }
 
   @HostListener( 'document:click', ['$event'] )
   onDocumentClick( event: Event ) {

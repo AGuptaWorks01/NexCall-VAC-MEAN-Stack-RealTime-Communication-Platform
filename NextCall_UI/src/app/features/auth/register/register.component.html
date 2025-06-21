@@ -1,5 +1,6 @@
-<div class="h-[70vh]">
-    <div class="w-full lg:w-5/12 mt-3 p-5 shadow-lg mx-auto bg-white dark:bg-gray-800 rounded">
+<div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-600">
+    <div class="w-full lg:w-5/12 mt-3 p-5 shadow-lg mx-auto rounded-lg
+              backdrop-blur-md bg-white/30 dark:bg-gray-800/30 border border-white/20">
         <h3 class="text-3xl text-center font-bold py-2 text-gray-800 dark:text-white">Register</h3>
 
         <!-- Registration form -->
@@ -48,31 +49,26 @@
             <!-- <button [disabled]="userForm.invalid" [class.opacity-50]="userForm.invalid" (click)="register()" -->
             <button (click)="register()"
                 class="bg-blue-900 p-2 rounded mt-3 text-white hover:bg-blue-700 transition duration-300 disabled:cursor-not-allowed">
-                Register
+                Sign Up
             </button>
+
+
+            <div class="flex justify-center mt-3 text-gray-700 dark:text-gray-300">
+                <span>Already have an account?</span>
+                <a routerLink="/login" class="text-white ml-2 hover:underline">Sign In</a>
+            </div>
         </form>
 
-        <div class="divider p-5">
+        <div class="divider p-2">
             <hr>
         </div>
 
-        <!-- <button type="button" class="google-btn" (click)="registerWithGoogle()">
-            <img src="assets/images/google-icon.ico" alt="Google Icon">
-            Sign up with Google
-        </button> -->
-
         <!-- Wrapper div centers the button horizontally -->
-        <div class="flex justify-center mt-3">
+        <div class="flex justify-center">
             <button type="button" (click)="registerWithGoogle()"
-                class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition">
+                class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition">
                 <img src="assets/images/google-icon.ico" alt="Google Icon" class="w-6 h-6">
             </button>
-        </div>
-
-
-        <div class="flex justify-center mt-3 text-gray-700 dark:text-gray-300">
-            <span>Already have an account?</span>
-            <a routerLink="/login" class="text-indigo-600 ml-2 hover:underline">Login Here</a>
         </div>
     </div>
 </div>

@@ -1,12 +1,13 @@
-<div class="h-[70vh]">
-    <div class="w-full lg:w-5/12 mt-3 p-5 shadow-lg mx-auto bg-white dark:bg-gray-800 rounded">
+<div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-600">
+    <div class="w-full lg:w-5/12 mt-3 p-5 shadow-lg mx-auto rounded-lg
+              backdrop-blur-md bg-white/30 dark:bg-gray-800/30 border border-white/20">
         <h3 class="text-3xl text-center font-bold py-2 text-gray-800 dark:text-white">Login</h3>
 
-        <!-- Registration form -->
+        <!-- Form remains unchanged -->
         <form [formGroup]="userForm" class="flex flex-col">
 
-            <!-- Email Field -->
-            <div class="flex flex-col mt-2 mb-1">
+            <!-- Email -->
+            <div class="flex flex-col">
                 <input formControlName="email" type="email" placeholder="Email"
                     class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
                 <span *ngIf="userForm.hasError('required', 'email') && userForm.controls['email'].dirty"
@@ -19,7 +20,7 @@
                 </span>
             </div>
 
-            <!-- Password Field -->
+            <!-- Password -->
             <div class="flex flex-col mt-2 mb-1 relative">
                 <input formControlName="password" [type]="showPassword ? 'text' : 'password'" placeholder="Password"
                     class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -27,7 +28,6 @@
                     class="text-red-500 text-sm mt-1">
                     *Password is required
                 </span>
-                <!-- Eye icon -->
                 <button type="button" (click)="showPassword = !showPassword"
                     class="absolute right-3 top-3 text-gray-600 hover:text-gray-800"
                     aria-label="Toggle Password Visibility">
@@ -35,31 +35,28 @@
                 </button>
             </div>
 
-            <!-- <button [disabled]="userForm.invalid" [class.opacity-50]="userForm.invalid" (click)="login()"
-                class="bg-blue-900 p-2 rounded mt-3 text-white hover:bg-blue-700 transition duration-300 disabled:cursor-not-allowed"> -->
+            <!-- Login Button -->
             <button (click)="login()"
                 class="bg-blue-900 p-2 rounded mt-3 text-white hover:bg-blue-700 transition duration-300 disabled:cursor-not-allowed">
-                Login
+                Sign In
             </button>
+
+            <div class="flex justify-center mt-3 text-gray-700 dark:text-gray-300">
+                <span>Don't have an account?</span>
+                <a routerLink="/register" class="text-white ml-2 hover:underline">Sign Up</a>
+            </div>
         </form>
 
-        <div class="divider p-5">
+        <div class="divider p-2">
             <hr>
         </div>
 
-        <!-- Wrapper div centers the button horizontally -->
-        <div class="flex justify-center mt-3">
+        <!-- Google Login Button -->
+        <div class="flex justify-center">
             <button type="button" (click)="loginWithGoogle()"
-                class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition">
+                class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition">
                 <img src="assets/images/google-icon.ico" alt="Google Icon" class="w-6 h-6">
             </button>
-        </div>
-
-
-
-        <div class="flex justify-center mt-3 text-gray-700 dark:text-gray-300">
-            <span>D'nt have an account?</span>
-            <a routerLink="/register" class="text-indigo-600 ml-2 hover:underline">Register Here</a>
         </div>
     </div>
 </div>

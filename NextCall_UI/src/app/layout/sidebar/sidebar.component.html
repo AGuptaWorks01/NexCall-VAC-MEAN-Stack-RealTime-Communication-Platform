@@ -1,22 +1,37 @@
 <div class="flex h-full">
     <!-- Sidebar -->
     <aside [ngClass]="{ 'w-48': sidebarOpen, 'w-12': !sidebarOpen }"
-        class="transition-all duration-300 bg-gray-800 text-white flex flex-col">
-        <!-- Hamburger inside sidebar -->
+        class="transition-all duration-300 bg-gray-800 text-white flex flex-col overflow-hidden">
+        <!-- Toggle Button -->
         <div class="flex items-center justify-end p-3">
             <button #sideButton (click)="toggleSidebar()" class="text-white text-xl">
                 <i class="fas" [ngClass]="sidebarOpen ? 'fa-chevron-left' : 'fa-bars'"></i>
             </button>
         </div>
 
-        <!-- Sidebar content -->
-        <ul #sideDropdown *ngIf="sidebarOpen" class="space-y-4 p-4">
-
-            <li routerLink="/home/single-chat" class="hover:bg-gray-700 p-2 rounded cursor-pointer">Chat</li>
-            <li routerLink="/home/group-chat" class="hover:bg-gray-700 p-2 rounded cursor-pointer">Group chat</li>
-            <li class="hover:bg-gray-700 p-2 rounded cursor-pointer">Video</li>
-            <li class="hover:bg-gray-700 p-2 rounded cursor-pointer">Support</li>
-            <li class="hover:bg-gray-700 p-2 rounded cursor-pointer">Contact Us</li>
+        <!-- Sidebar Items -->
+        <ul #sideDropdown class="flex flex-col space-y-2 p-2">
+            <li routerLink="/home/single-chat" class="flex items-center hover:bg-gray-700 p-2 rounded cursor-pointer">
+                <i class="fas fa-comment"></i>
+                <span class="ml-3" *ngIf="sidebarOpen">Chat</span>
+            </li>
+            <li routerLink="/home/group-chat" class="flex items-center hover:bg-gray-700 p-2 rounded cursor-pointer">
+                <i class="fas fa-users"></i>
+                <span class="ml-3" *ngIf="sidebarOpen">Group Chat</span>
+            </li>
+            <li class="flex items-center hover:bg-gray-700 p-2 rounded cursor-pointer">
+                <i class="fas fa-video"></i>
+                <span class="ml-3" *ngIf="sidebarOpen">Video</span>
+            </li>
+            <li class="flex items-center hover:bg-gray-700 p-2 rounded cursor-pointer">
+                <i class="fas fa-headset"></i>
+                <span class="ml-3" *ngIf="sidebarOpen">Support</span>
+            </li>
+            <li class="flex items-center hover:bg-gray-700 p-2 rounded cursor-pointer">
+                <i class="fas fa-envelope"></i>
+                <span class="ml-3" *ngIf="sidebarOpen">Contact Us</span>
+            </li>
         </ul>
     </aside>
+
 </div>

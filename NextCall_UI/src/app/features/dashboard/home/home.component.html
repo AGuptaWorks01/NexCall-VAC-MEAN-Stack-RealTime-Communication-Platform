@@ -3,7 +3,11 @@
 
     <!-- Option 3: If you need responsive sidebar -->
     <div class="flex flex-1 min-h-0">
-        <app-sidebar class="flex-shrink-0"></app-sidebar>
+        <!-- Sidebar wrapper -->
+        <div>
+            <app-sidebar></app-sidebar>
+        </div>
+
 
         <main class="flex-1 p-2 overflow-auto">
             <router-outlet></router-outlet>

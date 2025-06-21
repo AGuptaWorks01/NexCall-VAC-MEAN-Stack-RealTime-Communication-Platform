@@ -15,14 +15,5 @@ router.get( '/auth/google', googleAuthController.googleLogin );
 router.get( '/auth/google/callback', googleAuthController.googleCallback );
 router.get( '/auth/logout', googleAuthController.logout );
 
-// router.get('/protected', authMiddleware, (req, res) => {
-//     res.json({ msg: 'This is a protected route', user: req.user });
-// });
-
-// router.get('/protected',
-//     passport.authenticate('jwt', { session: false })
-//     , (req, res) => {
-//         res.json({ msg: 'This is a protected route', user: req.user });
-//     });
 
 module.exports = router;

@@ -7,10 +7,7 @@ const googleConfig = {
     scope: [ 'profile', 'email' ]
 };
 
-
 module.exports = googleConfig;
-
-
 
 
 // ==================== not in use ==========================

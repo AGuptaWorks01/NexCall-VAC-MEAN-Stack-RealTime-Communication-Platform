@@ -2,14 +2,13 @@ const passport = require( 'passport' );
 const GoogleStrategy = require( 'passport-google-oauth20' ).Strategy;
 const googleConfig = require( './google.config' );
 const User = require( '../models/user.model' );
-const { hasdPassword } = require( '../utils/hash' );
 
 // Configure Google Strategy
 passport.use( new GoogleStrategy( googleConfig,
     async ( accessToken, refreshToken, profile, done ) => {
         try
         {
-            // console.log( 'Google Profile:', profile ); // Debug log
+            console.log( 'Google Profile:', profile ); // Debug log
 
             // Get email from profile
             const email = profile.emails && profile.emails[ 0 ] ? profile.emails[ 0 ].value : null;
@@ -23,20 +22,16 @@ passport.use( new GoogleStrategy( googleConfig,
 
             if ( !user )
             {
-                // Generate a random password for Google users
-                const randomPassword = Math.random().toString( 36 ).slice( -8 );
-                const hashedPassword = await hasdPassword( randomPassword );
-
                 // Create username from email (remove domain and special characters)
                 const emailUsername = email.split( '@' )[ 0 ].replace( /[^a-zA-Z0-9]/g, '' );
-                const username = `${ emailUsername }`;
+                const username = `${ emailUsername }${ Math.random().toString( 36 ).slice( -4 ) }`;
 
-                // Create new user
+                // Create new user without password for Google OAuth
                 user = await User.create( {
                     username: username,
                     email: email,
-                    password: hashedPassword,
                     googleId: profile.id
+                    // No password field - it's optional for Google OAuth users
                 } );
             }
 

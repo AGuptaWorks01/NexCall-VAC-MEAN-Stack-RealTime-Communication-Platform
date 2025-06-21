@@ -32,9 +32,6 @@ router.use( authenticateUser );
 router.get( '/dashboard', ( req, res ) => {
     res.json( { msg: 'dashboard Profile route', user: req.user } );
 } );
-router.get( '/account', ( req, res ) => {
-    res.json( { msg: 'dashboard Profile route', user: req.user } );
-} );
 
 // This route is protected, it requires a valid JWT token
 router.get( '/profile', ( req, res ) => {
