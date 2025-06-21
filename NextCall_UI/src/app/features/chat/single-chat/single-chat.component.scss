@@ -1,0 +1,11 @@
+::ng-deep .dark .mat-form-field-infix input.mat-input-element {
+    color: white !important;
+}
+
+::ng-deep .dark .mat-form-field-label {
+    color: #ccc !important;
+}
+
+::ng-deep .dark .mat-input-element::placeholder {
+    color: #aaa !important;
+}

@@ -22,6 +22,7 @@ export class HeaderComponent {
   dropdownOpen=false;
   sidebarOpen=false;
   username: string|null='';
+  isDarkMode=false;
 
   private router=inject( Router );
   private authService=inject( AuthService );
@@ -37,13 +38,20 @@ export class HeaderComponent {
   //   this.sidebarOpen=!this.sidebarOpen;
   // }
 
-  ngOnInit(): void {
-    this.username=localStorage.getItem( 'username' );
+  toggleDarkMode() {
+    const isDark=document.documentElement.classList.toggle( 'dark' );
+    localStorage.setItem( 'theme', isDark? 'dark':'light' );
   }
 
-  // toggleDropdown() {
-  //   this.dropdownOpen=!this.dropdownOpen;
-  // }
+  ngOnInit(): void {
+    this.username=localStorage.getItem( 'username' );
+    const savedTheme=localStorage.getItem( 'theme' );
+    if ( savedTheme==='dark' ) {
+      document.documentElement.classList.add( 'dark' );
+    }
+  }
+
+
 
   logout() {
     this.authService.logout();
