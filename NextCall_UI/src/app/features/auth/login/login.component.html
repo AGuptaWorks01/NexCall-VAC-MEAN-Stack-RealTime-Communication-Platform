@@ -1,9 +1,9 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-600">
-    <div class="w-full lg:w-5/12 mt-3 p-5 shadow-lg mx-auto rounded-lg
-              backdrop-blur-md bg-white/30 dark:bg-gray-800/30 border border-white/20">
+<div
+    class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-200 via-gray-400 to-gray-600 dark:from-gray-700 dark:via-gray-800 dark:to-black">
+    <div
+        class="w-full lg:w-5/12 mt-3 p-6 rounded-xl shadow-xl mx-auto border border-white/30 bg-white/20 dark:bg-gray-800/20 backdrop-blur-md">
         <h3 class="text-3xl text-center font-bold py-2 text-gray-800 dark:text-white">Login</h3>
 
-        <!-- Form remains unchanged -->
         <form [formGroup]="userForm" class="flex flex-col">
 
             <!-- Email -->
@@ -29,7 +29,7 @@
                     *Password is required
                 </span>
                 <button type="button" (click)="showPassword = !showPassword"
-                    class="absolute right-3 top-3 text-gray-600 hover:text-gray-800"
+                    class="absolute right-3 top-3 text-gray-600 hover:text-gray-800 dark:text-gray-300"
                     aria-label="Toggle Password Visibility">
                     <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
                 </button>
@@ -54,7 +54,7 @@
         <!-- Google Login Button -->
         <div class="flex justify-center">
             <button type="button" (click)="loginWithGoogle()"
-                class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition">
+                class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition dark:hover:bg-gray-700">
                 <img src="assets/images/google-icon.ico" alt="Google Icon" class="w-6 h-6">
             </button>
         </div>
