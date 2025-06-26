@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
         </div>
 
         <!-- Main Content -->
-        <main class="flex-1 p-2 overflow-auto">
+        <main class="flex-1 overflow-auto">
           <router-outlet></router-outlet>
         </main>
       </div>
