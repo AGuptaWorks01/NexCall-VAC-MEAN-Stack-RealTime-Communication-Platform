@@ -1,10 +1,12 @@
 # NexCall VAC - MEAN Stack Real-Time Communication Platform
 
-> **Showcasing expertise in full-stack engineering, scalable architecture, and real-time systems with a robust MEAN (MongoDB, Express, Angular, Node.js) solution for modern communication needs.
+> ** Showcasing expertise in full-stack engineering, scalable architecture, and real-time systems with a robust MEAN (MongoDB, Express, Angular, Node.js) solution for modern communication needs.
 
 ---
 
 ## 🚀 Project Overview
+![NextCallUI-Google](https://github.com/user-attachments/assets/e229932a-8b9b-49fc-82a4-6e4b41e7b86e)
+
 
 **NexCall VAC** is a production-grade, real-time voice, audio, and chat communication platform built with the MEAN stack. It demonstrates end-to-end expertise in modern web development, scalable microservice design, and state-of-the-art real-time features using WebSockets and WebRTC.
 
