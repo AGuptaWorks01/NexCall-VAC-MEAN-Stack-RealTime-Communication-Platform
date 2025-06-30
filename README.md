@@ -5,7 +5,8 @@
 ---
 
 ## 🚀 Project Overview
-![NextCallUI-Google](https://github.com/user-attachments/assets/e229932a-8b9b-49fc-82a4-6e4b41e7b86e)
+![next_call_connect](https://github.com/user-attachments/assets/80c1d86d-50bc-4bd9-91b4-e352cfb4db81)
+
 
 
 **NexCall VAC** is a production-grade, real-time voice, audio, and chat communication platform built with the MEAN stack. It demonstrates end-to-end expertise in modern web development, scalable microservice design, and state-of-the-art real-time features using WebSockets and WebRTC.
