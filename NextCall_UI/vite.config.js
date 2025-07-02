@@ -1,9 +1,9 @@
-export default {
+import { defineConfig } from 'vite'
+
+export default defineConfig({
     server: {
         allowedHosts: [
-            'fb6b-122-169-118-24.ngrok-free.app',
-            '4faa-122-169-118-24.ngrok-free.app',
-            '5e4b-122-169-118-24.ngrok-free.app'
+            '04b3-103-204-132-130.ngrok-free.app'
         ]
     }
-}
+})
