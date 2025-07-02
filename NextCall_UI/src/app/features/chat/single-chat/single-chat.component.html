@@ -36,14 +36,14 @@
             </mat-form-field>
         </div>
 
-        <!-- Rest of your content -->
+        <!-- Users List -->
         <mat-card class="shadow rounded-lg h-[calc(100%-9rem)] bg-white dark:bg-gray-900">
             <mat-card-title class="text-lg p-4 font-semibold">All Users</mat-card-title>
             <mat-card-content class="overflow-y-auto max-h-[calc(100%-3rem)]">
-                <!-- List of chats -->
-                <div *ngFor="let user of combinedUsers"
-                    [ngClass]="{'cursor-pointer hover:bg-gray-100': user.status === 1, 'opacity-50 cursor-not-allowed': user.status !== 1}"
-                    class="py-2 rounded px-2" (click)="user.status === 1 && selectChat(user)">
+                <div *ngFor="let user of combinedUsers" (click)="selectChat(user)" [ngClass]="{
+                        'cursor-pointer hover:bg-gray-100': true,
+                        'opacity-50': user.status !== 1
+                    }" class="py-2 rounded px-2">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <img src="assets/images/ChatBc.png" alt="User" class="w-10 h-10 rounded-full" />
@@ -64,13 +64,11 @@
         </mat-card>
     </div>
 
-
     <!-- Chat Section -->
     <div class="flex-1 p-4 flex flex-col space-y-4 bg-gray-50 dark:bg-gray-900">
-        <!-- Header -->
+        <!-- Chat Header -->
         <mat-toolbar color="primary" class="rounded-lg shadow-md" *ngIf="selectedUser">
             <div class="flex items-center justify-between w-full">
-                <!-- Left Section -->
                 <div class="flex items-center gap-2">
                     <button mat-icon-button (click)="toggleSidebar()" class="md:hidden">
                         <mat-icon class="text-black">menu</mat-icon>
@@ -80,6 +78,11 @@
                 </div>
             </div>
         </mat-toolbar>
+
+        <!-- Offline User Notice -->
+        <div *ngIf="selectedUser?.status !== 1" class="text-sm text-yellow-600 dark:text-yellow-300 px-2">
+            Note: This user is offline. Your message will be delivered when they come online.
+        </div>
 
         <!-- Chat Messages -->
         <div class="flex-1 overflow-y-auto space-y-4 px-2" *ngIf="selectedUser; else noChatSelected">
@@ -92,8 +95,6 @@
                         {{ msg.message }}
                     </div>
                 </div>
-
-                <!-- timestamp white in dark mode -->
                 <div [ngClass]="msg.from === currentUser ? 'text-right' : 'pl-12'"
                     class="text-xs text-gray-500 dark:text-gray-100 mt-1 pr-4">
                     <small class="mr-2">{{ msg.from }}</small>
@@ -102,6 +103,7 @@
             </ng-container>
         </div>
 
+        <!-- Fallback: No user selected -->
         <ng-template #noChatSelected>
             <div class="flex-1 flex items-center justify-center">
                 <p class="text-gray-500">Select a user to start chatting.</p>

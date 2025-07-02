@@ -11,6 +11,7 @@ export const routes: Routes = [
   },
   {
     path: 'login',
+    canActivate: [authGuard], // 🛡️ same guard
     loadComponent: () =>
       import('./features/auth/login/login.component').then(
         (m) => m.LoginComponent
@@ -18,6 +19,7 @@ export const routes: Routes = [
   },
   {
     path: 'register',
+    canActivate: [authGuard], // 🛡️ same guard
     loadComponent: () =>
       import('./features/auth/register/register.component').then(
         (m) => m.RegisterComponent

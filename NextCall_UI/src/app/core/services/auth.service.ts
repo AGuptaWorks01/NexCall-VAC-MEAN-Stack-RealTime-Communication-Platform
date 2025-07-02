@@ -58,7 +58,11 @@ export class AuthService {
 
   constructor(private router: Router) {
     const token = this.getAuthToken();
-    this.isLoggedInSubject.next(!!token);
+    if (token && !this.isTokenExpired(token)) {
+      this.isLoggedInSubject.next(true);
+    } else {
+      this.logout();
+    }
   }
 
   getAuthToken(): string | null {
@@ -104,5 +108,16 @@ export class AuthService {
   // Check authentication status
   checkAuthStatus(): Observable<any> {
     return this._http.get<any>(`${this._environment}/api/auth/status`);
+  }
+
+  isTokenExpired(token: string): boolean {
+    try {
+      const decoded: any = jwtDecode(token);
+      if (!decoded.exp) return true;
+      const expiry = decoded.exp * 1000;
+      return Date.now() > expiry;
+    } catch (e) {
+      return true;
+    }
   }
 }
