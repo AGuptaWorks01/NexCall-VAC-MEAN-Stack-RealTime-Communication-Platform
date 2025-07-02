@@ -134,4 +134,14 @@ export class SingleChatComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // Cleanup code if needed
   }
+
+  startAudioCall() {
+    console.warn('Starting audio call with', this.selectedUser.username);
+    // Your logic here
+  }
+
+  startVideoCall() {
+    console.warn('Starting video call with', this.selectedUser.username);
+    // Your logic here
+  }
 }

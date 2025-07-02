@@ -76,6 +76,16 @@
                     <img src="assets/images/ChatBc.png" alt="User" class="w-10 h-10 rounded-full bg-white" />
                     <span class="text-black font-semibold">{{ selectedUser.username }}</span>
                 </div>
+
+                <!-- Right Side -->
+                <div class="flex items-center gap-2">
+                    <button mat-icon-button (click)="startAudioCall()">
+                        <mat-icon class="text-black">call</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="startVideoCall()">
+                        <mat-icon class="text-black">videocam</mat-icon>
+                    </button>
+                </div>
             </div>
         </mat-toolbar>
 
