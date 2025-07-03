@@ -14,3 +14,17 @@ export const authGuard: CanActivateFn=( route, state ) => {
 
   return isLoggedIn;
 };
+
+export const guestGuard: CanActivateFn=( route, state ) => {
+  const authService=inject( AuthService );
+  const router=inject( Router );
+
+  const isLoggedIn=authService.getAuthToken()!==null;
+
+  if ( isLoggedIn ) {
+    router.navigate( ['/home'] );
+    return false;
+  }
+
+  return true;
+};

@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.userlogin( this.userForm.value ).subscribe( {
       next: ( res: any ) => {
-        console.log("____________________",res);
+        // console.log( "____________________", res );
         this.toastr.success( "Login Success", )
         // this.authService.setLoginStatus(res)
         setTimeout( () => {

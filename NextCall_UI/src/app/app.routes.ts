@@ -1,9 +1,9 @@
-import { Routes } from '@angular/router';
-import { authGuard } from './core/guards/auth.guard';
-import { AuthCallbackComponent } from './features/auth/auth-callback/auth-callback.component';
-import { WelcomeComponent } from './features/dashboard/welcome/welcome.component';
+import {Routes} from '@angular/router';
+import {authGuard, guestGuard} from './core/guards/auth.guard';
+import {AuthCallbackComponent} from './features/auth/auth-callback/auth-callback.component';
+import {WelcomeComponent} from './features/dashboard/welcome/welcome.component';
 
-export const routes: Routes = [
+export const routes: Routes=[
   {
     path: '',
     redirectTo: 'login',
@@ -11,24 +11,26 @@ export const routes: Routes = [
   },
   {
     path: 'login',
+    canActivate: [guestGuard],
     loadComponent: () =>
-      import('./features/auth/login/login.component').then(
-        (m) => m.LoginComponent
+      import( './features/auth/login/login.component' ).then(
+        ( m ) => m.LoginComponent
       ),
   },
   {
     path: 'register',
+    canActivate: [guestGuard],
     loadComponent: () =>
-      import('./features/auth/register/register.component').then(
-        (m) => m.RegisterComponent
+      import( './features/auth/register/register.component' ).then(
+        ( m ) => m.RegisterComponent
       ),
   },
   {
     path: 'home',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('./features/dashboard/home/home.component').then(
-        (m) => m.HomeComponent
+      import( './features/dashboard/home/home.component' ).then(
+        ( m ) => m.HomeComponent
       ),
     children: [
       {
@@ -38,15 +40,15 @@ export const routes: Routes = [
       {
         path: 'group-chat',
         loadComponent: () =>
-          import('./features/chat/group-chat/group-chat.component').then(
-            (m) => m.GroupChatComponent
+          import( './features/chat/group-chat/group-chat.component' ).then(
+            ( m ) => m.GroupChatComponent
           ),
       },
       {
         path: 'single-chat',
         loadComponent: () =>
-          import('./features/chat/single-chat/single-chat.component').then(
-            (m) => m.SingleChatComponent
+          import( './features/chat/single-chat/single-chat.component' ).then(
+            ( m ) => m.SingleChatComponent
           ),
       },
     ],

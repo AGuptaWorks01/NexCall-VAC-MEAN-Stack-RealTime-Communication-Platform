@@ -93,9 +93,36 @@ export class AuthService {
     );
   }
 
-  // Google OAuth login
+  // Google OAuth login (redirect, old)
   initiateGoogleLogin(): void {
     window.location.href=`${ this._environment }/api/auth/google`;
+  }
+
+  // Google OAuth login (popup, new)
+  initiateGoogleLoginPopup(): void {
+    const popup=window.open(
+      `${ this._environment }/api/auth/google`,
+      'GoogleLogin',
+      'width=500,height=600'
+    );
+
+    if ( !popup ) {
+      alert( 'Popup blocked! Please allow popups for this site.' );
+      return;
+    }
+
+    // Listen for token from popup
+    const listener=( event: MessageEvent ) => {
+      // Only accept messages from our own origin
+      if ( event.origin!==window.location.origin ) return;
+      if ( event.data&&event.data.type==='google-auth-token' ) {
+        this.setLoginStatus( {token: event.data.token, data: {_id: '', username: '', email: ''}} );
+        this.router.navigate( ['/home'] );
+        window.removeEventListener( 'message', listener );
+        popup.close();
+      }
+    };
+    window.addEventListener( 'message', listener );
   }
 
   // Check authentication status
