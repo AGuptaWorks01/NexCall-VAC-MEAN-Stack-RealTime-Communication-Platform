@@ -1,9 +1,9 @@
 nextcall_backend/
 │
-├── 📁 src/
-│   ├── 📁 config/                   # Configuration files (env, constants, socket)
-│   │   ├── socket.config.js
-│   │   └── db.config.js            # (New) DB config (e.g., MongoDB or PostgreSQL)
+├── 📁 src/                       
+│   ├── 📁 config/                   # Configuration files (env, constants, socket)                     
+│   │   ├── socket.config.js                       
+│   │   └── db.config.js            # (New) DB config (e.g., MongoDB or PostgreSQL)                   
 │   │   └── passport-jwt.js            # (New) DB config (e.g., MongoDB or PostgreSQL)
 │   │
 │   ├── 📁 controllers/             # Business logic (splitted by domain)
