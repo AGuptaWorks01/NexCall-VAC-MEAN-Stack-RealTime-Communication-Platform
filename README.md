@@ -94,6 +94,9 @@ ng serve
 
 ---
 
+
+`docker compose up --build`
+
 ## 👨‍💼 About the Author
 
 Developed by [AGuptaWorks01](https://github.com/AGuptaWorks01) — Full-stack engineer passionate about scalable, maintainable, and robust web solutions.  
